@@ -1,0 +1,6 @@
+<ul *ngIf="flights$ | async as flights else noData">
+    <li *ngFor="let flight of flights">
+        {{flight.additionalInformation}}
+    </li>
+</ul>
+<ng-template #noData>No Data Available</ng-template>
