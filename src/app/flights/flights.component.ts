@@ -27,9 +27,9 @@ export class FlightsComponent implements OnInit {
     }
 
     ngOnInit() {
-      const params = new HttpParams({
+      /*const params = new HttpParams({
           fromString: 'orderBy="$key"&limitToFirst=1'
-      });
+      });*/
 
       this.flights$ = this.http
           .request(
@@ -37,7 +37,7 @@ export class FlightsComponent implements OnInit {
           "https://flights-app-f340c.firebaseio.com/flights.json",
           {
               responseType:"json",
-              params
+              /*params*/
           })
           .do(console.log)
           .map(data => _.values(data));

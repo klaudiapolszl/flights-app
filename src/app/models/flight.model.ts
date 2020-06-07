@@ -3,14 +3,17 @@
     name: string;
   }
 
-  export interface Flights {
+  export interface Flight {
     additionalInformation: string;
     code: string;
-    crew: Crew[];
+    crew: [];
     departureTime: string;
     destination: string;
     origin: string;
     returnTime: string;
-    withSKPlanesDiscount: boolean;
     key: string;
+  }
+
+  export interface Flights {
+    flights: Flight[];
   }
