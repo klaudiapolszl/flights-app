@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import {FlightsModule} from "./flights/flights.module";
+import { FlightsModule } from "./flights/flights.module";
 
 @NgModule({
     declarations: [

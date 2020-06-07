@@ -1,16 +1,7 @@
-/* @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
-}) */
-import {Component, OnInit, Input} from '@angular/core';
-import {Observable} from "rxjs/Observable";
-import {HttpClient} from "@angular/common/http";
-import {HttpParams} from "@angular/common/http";
-import {Flights} from "../models/flight.model";
-import {FlightCardComponent} from "./flight-card/flight-card.component"
-import 'rxjs/Rx';
-import * as _ from 'lodash';
+import { Component } from '@angular/core';
+import { FlightsService } from './../core/services/flights.service';
+import { Observable } from "rxjs/Observable";
+import { Flights } from "../models/flight.model";
 
 @Component({
   selector: 'app-flights',
@@ -18,28 +9,11 @@ import * as _ from 'lodash';
   styleUrls: ['./flights.component.scss']
 })
 
-export class FlightsComponent implements OnInit {
-
+export class FlightsComponent {
     title = 'flights-app';
-    flights$: Observable<Flights[]>;
 
-    constructor(private http:HttpClient) {
-    }
-
-    ngOnInit() {
-      /*const params = new HttpParams({
-          fromString: 'orderBy="$key"&limitToFirst=1'
-      });*/
-
-      this.flights$ = this.http
-          .request(
-          "GET",
-          "https://flights-app-f340c.firebaseio.com/flights.json",
-          {
-              responseType:"json",
-              /*params*/
-          })
-          .do(console.log)
-          .map(data => _.values(data));
-    }
+    constructor(
+      private flightsService: FlightsService
+    ) { }
+    flights$: Observable<Flights[]> = this.flightsService.getFlights();
 }
