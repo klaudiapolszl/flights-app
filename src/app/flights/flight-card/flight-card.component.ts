@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Flights} from '../../models/flight.model';
 
 @Component({
   selector: 'app-flight-card',
@@ -6,5 +7,4 @@ import {Component} from '@angular/core';
   styleUrls: ['./flight-card.component.scss']
 })
 export class FlightCardComponent {
-
 }

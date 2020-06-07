@@ -3,11 +3,12 @@
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 }) */
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import {HttpClient} from "@angular/common/http";
 import {HttpParams} from "@angular/common/http";
 import {Flights} from "../models/flight.model";
+import {FlightCardComponent} from "./flight-card/flight-card.component"
 import 'rxjs/Rx';
 import * as _ from 'lodash';
 
@@ -18,6 +19,7 @@ import * as _ from 'lodash';
 })
 
 export class FlightsComponent implements OnInit {
+
     title = 'flights-app';
     flights$: Observable<Flights[]>;
 
