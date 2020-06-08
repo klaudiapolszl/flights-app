@@ -4,6 +4,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FlightsModule } from "./flights/flights.module";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
     declarations: [
@@ -13,7 +15,9 @@ import { FlightsModule } from "./flights/flights.module";
         BrowserModule,
         HttpClientModule,
         AppRoutingModule,
-        FlightsModule
+        FlightsModule,
+        BrowserAnimationsModule,
+        MatCardModule
     ],
     providers: [],
     bootstrap: [AppComponent]

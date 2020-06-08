@@ -1,7 +1,14 @@
-<h1>Flight Cards</h1>
-<ul *ngIf="flights$ | async as flights else noData">
-  <li *ngFor="let flight of flights">
-    <app-flight-card [flight]="flight"></app-flight-card>
-  </li>
-</ul>
-<ng-template #noData>No Data Available</ng-template>
+<h1 class="title">Flight Cards</h1>
+
+  <div *ngIf="flights$ | async as flights else noData" class="cards-container">
+
+      <div *ngFor="let flight of flights; let i = index" class="cards-container__elem">
+        <mat-card>
+          <app-flight-card [flight]="flight"></app-flight-card>
+          {{ flight.$name }}
+           <button mat-raised-button color="primary" (click)='delete(i)' class="btn--delete">Delete</button>
+      </mat-card>
+      </div>
+
+  </div>
+  <ng-template #noData>No Data Available</ng-template>
