@@ -1,9 +1,7 @@
 <h1>Flight Cards</h1>
 <ul *ngIf="flights$ | async as flights else noData">
-  <li *ngFor="let flight of flights; let i = index">
+  <li *ngFor="let flight of flights">
     <app-flight-card [flight]="flight"></app-flight-card>
-    {{ flight.$name }}
-    <button class="btn btn-primary mr-1" (click)='delete(i)'>Delete</button>
   </li>
 </ul>
 <ng-template #noData>No Data Available</ng-template>
