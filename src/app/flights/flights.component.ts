@@ -16,4 +16,9 @@ export class FlightsComponent {
       private flightsService: FlightsService
     ) { }
     flights$: Observable<Flights[]> = this.flightsService.getFlights();
+
+    delete(index: String){
+    //  this.flights$.subscribe(res => console.log(res));
+      this.flightsService.deleteFlight(index);
+    }
 }

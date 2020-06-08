@@ -1,0 +1,41 @@
+<!-- main app container -->
+<div class="card m-3">
+    <div class="card-body">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <div class="form-group col-5">
+                    <label>Origin</label>
+                    <input type="text" formControlName="origin" class="form-control" />
+                </div>
+                <div class="form-group col-5">
+                    <label>Destination</label>
+                    <input type="text" formControlName="destination" class="form-control" />
+                </div>
+                <div class="form-group col-5">
+                    <label>Departure Time</label>
+                    <input type="text" formControlName="departureTime" class="form-control" />
+                </div>
+                <div class="form-group col-5">
+                    <label>Return time</label>
+                    <input type="text" formControlName="returnTime" class="form-control" />
+                </div>
+                <div class="form-group col-5">
+                    <label>Code</label>
+                    <input type="text" formControlName="code" class="form-control" />
+                </div>
+                <div class="form-group col-5">
+                    <label>Additional Information</label>
+                    <input type="text" formControlName="additionalInformation" class="form-control" />
+                </div>
+                <div class="form-group col-5">
+                    <label>Crew</label>
+                    <input type="text" formControlName="crew" class="form-control" />
+                </div>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-primary mr-1">Register</button>
+                <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
