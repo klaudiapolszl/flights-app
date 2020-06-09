@@ -9,43 +9,40 @@ import { Flight } from "../../models/flight.model";
   styleUrls: ['./flight-form.component.scss']
 })
 export class FlightFormComponent{
-    registerForm: FormGroup;
-    private flight: Flight;
-    crews = [
-      { label: 'Crew1', value: 'Kowalski, Szlachta, Polan'},
-      { label: 'Crew2', value: 'Górnikowski, Kłosowska, Jawor'},
-      { label: 'Crew3', value: 'Szumska, Miedziński, Kowal'},
-      { label: 'Crew4', value: 'Hepner, Janik, Zdrada'},
-      { label: 'Crew5', value: 'Kotarski, Jakut, Nowogrodzki'}
-    ]
-    constructor(
-      private formBuilder: FormBuilder,
-      private flightsService: FlightsService
-    ) { }
+  registerForm: FormGroup;
+  private flight: Flight;
 
-    ngOnInit() {
-        this.registerForm = this.formBuilder.group({
-            origin: [''],
-            destination: [''],
-            departureTime: [''],
-            returnTime: [''],
-            code: [''],
-            additionalInformation: [''],
-            crew: ['']
-        });
-    }
+  crews = [
+    { label: 'Crew1', value: 'Kowalski, Szlachta, Polan'},
+    { label: 'Crew2', value: 'Górnikowski, Kłosowska, Jawor'},
+    { label: 'Crew3', value: 'Szumska, Miedziński, Kowal'},
+    { label: 'Crew4', value: 'Hepner, Janik, Zdrada'},
+    { label: 'Crew5', value: 'Kotarski, Jakut, Nowogrodzki'}
+  ]
 
+  constructor(
+    private formBuilder: FormBuilder,
+    private flightsService: FlightsService
+  ) { }
 
-    onSubmit() {
-      this.flight = this.registerForm.value;
-      this.saveFlight();
-      console.log(this.registerForm.value.origin);
-    }
+  ngOnInit() {
+    this.registerForm = this.formBuilder.group({
+      origin: [''],
+      destination: [''],
+      departureTime: [''],
+      returnTime: [''],
+      code: [''],
+      additionalInformation: [''],
+      crew: ['']
+    });
+  }
 
-    saveFlight(){
-      this.flightsService.addFlight(this.flight);
-    }
-    onReset() {
+  onSubmit() {
+    this.flight = this.registerForm.value;
+    this.saveFlight();
+  }
 
-    }
+  saveFlight(){
+    this.flightsService.addFlight(this.flight);
+  }
 }

@@ -1,5 +1,12 @@
-form input,
-form textarea{
-  display: block;
-  margin-bottom: 10px;
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+.form-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.form-button {
+  margin-right: 20px;
 }

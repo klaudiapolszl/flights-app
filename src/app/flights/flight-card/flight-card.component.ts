@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { Flight } from '../../models/flight.model';
-import {MatCardModule} from '@angular/material/card';
 
 @Component({
   selector: 'app-flight-card',
@@ -44,8 +43,4 @@ export class FlightCardComponent {
  get showReturnTime(): string {
    return this.pflight.returnTime;
  }
- /*
-  get getKey(): string {
-    console.log(this.pflight);
-  }*/
 }

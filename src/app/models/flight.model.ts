@@ -1,8 +1,3 @@
-export interface Crew {
-  job: string;
-  name: string;
-}
-
 export interface Flight {
   additionalInformation: string;
   code: string;
