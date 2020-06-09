@@ -10,13 +10,17 @@ import { Flights } from "../models/flight.model";
 })
 
 export class FlightsComponent {
-  title = 'flights-app';
+  title = 'Flight Cards';
+
 
   constructor(
     private flightsService: FlightsService
   ) { }
   flights$: Observable<Flights[]> = this.flightsService.getFlights();
-  delete(index: String){
-    //this.flightsService.deleteFlight(index);
+
+  delete(key: String){
+    let status = this.flightsService.deleteFlight(key);
+    (status) ? this.fights$ = this.flightsService.getFlights() : "";
   }
+
 }

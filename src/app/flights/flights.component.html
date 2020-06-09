@@ -1,10 +1,9 @@
-<h1 class="main-title">Flight Cards</h1>
+<h1 class="main-title">{{title}}</h1>
 <div *ngIf="flights$ | async as flights else noData" class="cards-container">
-  <div *ngFor="let flight of flights; let i = index" class="cards-container-elem">
+  <div *ngFor="let flight of flights" class="cards-container-elem">
     <mat-card>
       <app-flight-card [flight]="flight"></app-flight-card>
-        {{ flight.$name }}
-      <button mat-raised-button color="primary" (click)='delete(i)' class="card-button">Delete</button>
+      <button mat-raised-button color="primary" (click)='delete(flight.key)' class="card-button">Delete</button>
     </mat-card>
   </div>
 </div>

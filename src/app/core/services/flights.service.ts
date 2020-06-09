@@ -17,15 +17,25 @@ export class FlightsService {
   }
 
   getFlights(): Observable<Flights[]> {
-    return this.http
+    let x = this.http
       .request(
       "GET",
       this.API_URL+'/flights.json',
       {
           responseType:"json",
       })
+      .do(flights => {
+        let keys = Object.keys(flights);
+        let flightsWithKey = [];
+        keys.map((key,index) => {
+          flightsWithKey[index] = flights[key];
+          flightsWithKey[index].key = key;
+        });
+        return flightsWithKey;
+      })
       .do(console.log)
       .map(data => _.values(data));
+      return x;
     }
 
   addFlight(flight) {
@@ -49,5 +59,25 @@ export class FlightsService {
       () => {
         console.log("The POST observable is now completed.");
       });
+  }
+
+  deleteFlight(key): Boolean {
+    let status = false;
+    this.http.delete(this.API_URL+"/flights/"+key+".json")
+      .subscribe(
+          (val) => {
+              console.log("DELETE call successful value returned in body",
+                          val);
+              status = true;
+          },
+          response => {
+              console.log("DELETE call in error", response);
+              status = false;
+          },
+          () => {
+              console.log("The DELETE observable is now completed.");
+              status = true;
+          });
+    return status;
   }
 }
