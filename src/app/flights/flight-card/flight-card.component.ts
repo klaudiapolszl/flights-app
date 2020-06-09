@@ -11,7 +11,7 @@ export class FlightCardComponent {
   private pflight = {
    additionalInformation: '',
    code: '',
-   crew: [],
+   crew: '',
    departureTime: '',
    destination: '',
    origin: '',
@@ -29,12 +29,8 @@ export class FlightCardComponent {
  get showCode(): string {
    return this.pflight.code;
  }
- get showCrew(): string[] {
-   let flightCrew = new Array();
-   for (var i = 0; i < this.pflight.crew?.length; i++) {
-      flightCrew.push(this.pflight.crew[i].job + " - " + this.pflight.crew[i].name);
-    }
-    return flightCrew;
+ get showCrew(): string {
+  return this.pflight.crew;
  }
  get showDepartureTime(): string {
    return this.pflight.departureTime;

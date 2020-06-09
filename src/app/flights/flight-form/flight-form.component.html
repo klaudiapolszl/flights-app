@@ -27,6 +27,12 @@
                     <label>Additional Information</label>
                     <input type="text" formControlName="additionalInformation" class="form-control" />
                 </div>
+                <div>
+                  <label for="crew">Choose a crew:</label>
+                  <select name="crew" formControlName="crew" placeholder="Crew">
+                    <option *ngFor="let crew of crews" [value]="crew.value">{{ crew.value }}</option>
+                  </select>
+                </div>
                 <!--<mat-form-field>
                   <mat-select formControlName="job" placeholder="Job">
                     <mat-option *ngFor="let job of jobs" [value]="job.value"> {{ job.label }} </mat-option>

@@ -6,7 +6,7 @@ export interface Crew {
 export interface Flight {
   additionalInformation: string;
   code: string;
-  crew: [];
+  crew: string;
   departureTime: string;
   destination: string;
   origin: string;
