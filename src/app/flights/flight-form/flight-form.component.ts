@@ -31,7 +31,7 @@ export class FlightFormComponent{
       destination: [''],
       departureTime: [''],
       returnTime: [''],
-      code: [''],
+      code: ['', { validators: [Validators.required] }],
       additionalInformation: [''],
       crew: ['']
     });
@@ -39,10 +39,16 @@ export class FlightFormComponent{
 
   onSubmit() {
     this.flight = this.registerForm.value;
-    this.saveFlight();
+    (this.validationForm()) ? this.saveFlight() : '';
   }
 
   saveFlight(){
     this.flightsService.addFlight(this.flight);
   }
+
+  validationForm(){
+    return (this.registerForm.value.code) ? true : false;
+  }
+
+
 }
