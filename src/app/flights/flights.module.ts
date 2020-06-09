@@ -7,15 +7,18 @@ import { NewFlightComponent } from './new-flight/new-flight.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
-  declarations: [FlightsComponent, FlightCardComponent, NewFlightComponent, FlightFormComponent],
+  declarations: [FlightsComponent, FlightCardComponent, NewFlightComponent, FlightFormComponent, DashboardComponent],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTabsModule
   ],
   exports: [FlightsComponent]
 })

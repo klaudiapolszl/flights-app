@@ -27,10 +27,15 @@
                     <label>Additional Information</label>
                     <input type="text" formControlName="additionalInformation" class="form-control" />
                 </div>
-                <div class="form-group col-5">
+                <!--<mat-form-field>
+                  <mat-select formControlName="job" placeholder="Job">
+                    <mat-option *ngFor="let job of jobs" [value]="job.value"> {{ job.label }} </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <!--<div class="form-group col-5">
                     <label>Crew</label>
                     <input type="text" formControlName="crew" class="form-control" />
-                </div>
+                </div>-->
             </div>
             <div class="text-center">
                 <button class="btn btn-primary mr-1">Register</button>

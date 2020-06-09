@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
 import {FlightsComponent} from './flights/flights.component';
+import {DashboardComponent} from './flights/dashboard/dashboard.component';
 import {NewFlightComponent} from './flights/new-flight/new-flight.component';
 
 @NgModule({
