@@ -11,9 +11,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { EditFlightComponent } from './edit-flight/edit-flight.component';
 
 @NgModule({
-  declarations: [FlightsComponent, FlightCardComponent, NewFlightComponent, FlightFormComponent, DashboardComponent],
+  declarations: [FlightsComponent, FlightCardComponent, NewFlightComponent, FlightFormComponent, DashboardComponent, EditFlightComponent],
   imports: [
     CommonModule,
     FormsModule,

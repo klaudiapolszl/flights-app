@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FlightsService } from '../../core/services/flights.service';
 import { Flight } from "../../models/flight.model";
 
 @Component({
-  selector: 'app-flight-form',
-  templateUrl: './flight-form.component.html',
-  styleUrls: ['./flight-form.component.scss']
+  selector: 'app-edit-flight',
+  templateUrl: './edit-flight.component.html',
+  styleUrls: ['./edit-flight.component.scss']
 })
-export class FlightFormComponent{
+export class EditFlightComponent{
   registerForm: FormGroup;
   private flight: Flight;
 
@@ -53,6 +53,5 @@ export class FlightFormComponent{
   validationForm(){
     return (this.registerForm.value.code) ? true : false;
   }
-
 
 }

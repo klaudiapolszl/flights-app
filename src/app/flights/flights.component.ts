@@ -10,17 +10,27 @@ import { Flights } from "../models/flight.model";
 })
 
 export class FlightsComponent {
-  title = 'Flight Cards';
-
+  public flights$: Observable<Flights[]>;
 
   constructor(
     private flightsService: FlightsService
-  ) { }
-  flights$: Observable<Flights[]> = this.flightsService.getFlights();
-
-  delete(key: String){
-    let status = this.flightsService.deleteFlight(key);
-    (status) ? this.fights$ = this.flightsService.getFlights() : "";
+  ) {
+    this.flights$ = this.flightsService.getFlights();
   }
 
+  delete(key: string){
+    let _this = this;
+    this.flightsService.deleteFlight(key).then(()=>{
+      setTimeout(function(){
+        _this.flights$ = _this.flightsService.getFlights();
+      },
+      1000);
+    });
+  }
+
+/*
+  edit(key: string, flight){
+    this.flights$ = this.flightsService.editFlight(key,flight);
+  }
+*/
 }

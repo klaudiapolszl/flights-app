@@ -1,0 +1,41 @@
+<h1 class="main-title">Edit flight</h1>
+<mat-card class="create-flight-card">
+  <div class="flight-form">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="form-field">
+        <mat-label>Origin</mat-label>
+        <input matInput formControlName="origin">
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Destination</mat-label>
+        <input matInput formControlName="destination">
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Departure Time</mat-label>
+        <input matInput formControlName="departureTime">
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Return time</mat-label>
+        <input matInput formControlName="returnTime">
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Code</mat-label>
+        <input matInput formControlName="code">
+        <mat-error *ngIf="registerForm.get('code').hasError('required')">Code is required</mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Additional Information</mat-label>
+        <input matInput formControlName="additionalInformation">
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-select formControlName="crew" placeholder="Choose a crew">
+          <mat-option *ngFor="let crew of crews" [value]="crew.value"> {{ crew.value }} </mat-option>
+        </mat-select>
+      </mat-form-field>
+        <div class="form-buttons">
+           <button mat-raised-button color="primary" class="form-button">Edit flight</button>
+           <button mat-raised-button color="basic" type="reset">Clear the form</button>
+        </div>
+    </form>
+  </div>
+</mat-card>
