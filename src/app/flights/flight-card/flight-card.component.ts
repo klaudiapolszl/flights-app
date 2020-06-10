@@ -7,16 +7,7 @@ import { Flight } from '../../models/flight.model';
   styleUrls: ['./flight-card.component.scss']
 })
 export class FlightCardComponent {
-  private pflight = {
-   additionalInformation: '',
-   code: '',
-   crew: '',
-   departureTime: '',
-   destination: '',
-   origin: '',
-   returnTime: '',
-   key: ''
- };
+  private pflight: Flight;
 
  @Input()
  set flight(flight: Flight) {
