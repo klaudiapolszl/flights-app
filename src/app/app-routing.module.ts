@@ -5,7 +5,7 @@ import {EditFlightComponent} from "./flights/edit-flight/edit-flight.component";
 
 const routes: Routes = [
   {path: '', component: DashboardComponent},
-  {path: 'editflight/:id', component: EditFlightComponent}
+  {path: 'edit-flight/:key', component: EditFlightComponent}
 ];
 
 @NgModule({
