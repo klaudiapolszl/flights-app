@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {DashboardComponent} from "./flights/dashboard/dashboard.component";
+import {EditFlightComponent} from "./flights/edit-flight/edit-flight.component";
 
 const routes: Routes = [
-  {path: '', component: DashboardComponent}
+  {path: '', component: DashboardComponent},
+  {path: 'editflight/:id', component: EditFlightComponent}
 ];
 
 @NgModule({
