@@ -1,34 +1,40 @@
 <div class="flight-form">
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
     <mat-form-field class="form-field">
       <mat-label>Origin</mat-label>
       <input matInput formControlName="origin">
+      <mat-error *ngIf="addForm.get('origin').hasError('required')">Origin is required</mat-error>
     </mat-form-field>
     <mat-form-field class="form-field">
       <mat-label>Destination</mat-label>
       <input matInput formControlName="destination">
+      <mat-error *ngIf="addForm.get('destination').hasError('required')">Destination is required</mat-error>
     </mat-form-field>
     <mat-form-field class="form-field">
       <mat-label>Departure Time</mat-label>
       <input matInput formControlName="departureTime">
+      <mat-error *ngIf="addForm.get('departureTime').hasError('required')">Departure time is required</mat-error>
     </mat-form-field>
     <mat-form-field class="form-field">
       <mat-label>Return time</mat-label>
       <input matInput formControlName="returnTime">
+      <mat-error *ngIf="addForm.get('returnTime').hasError('required')">Return time is required</mat-error>
     </mat-form-field>
     <mat-form-field class="form-field">
       <mat-label>Code</mat-label>
       <input matInput formControlName="code">
-      <mat-error *ngIf="registerForm.get('code').hasError('required')">Code is required</mat-error>
+      <mat-error *ngIf="addForm.get('code').hasError('required')">Code is required</mat-error>
     </mat-form-field>
     <mat-form-field class="form-field">
       <mat-label>Additional Information</mat-label>
       <input matInput formControlName="additionalInformation">
+      <mat-error *ngIf="addForm.get('additionalInformation').hasError('required')">Additional information is required</mat-error>
     </mat-form-field>
     <mat-form-field class="form-field">
       <mat-select formControlName="crew" placeholder="Choose a crew">
         <mat-option *ngFor="let crew of crews" [value]="crew.value"> {{ crew.value }} </mat-option>
       </mat-select>
+      <mat-error *ngIf="addForm.get('crew').hasError('required')">Crew is required</mat-error>
     </mat-form-field>
       <div class="form-buttons">
          <button mat-raised-button color="primary" class="form-button">Create new flight</button>

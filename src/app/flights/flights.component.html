@@ -3,13 +3,9 @@
   <div *ngFor="let flight of flights" class="cards-container-elem">
     <mat-card>
       <app-flight-card [flight]="flight"></app-flight-card>
-      <a [routerLink]="['/editflight', flight.key]">
-        <button mat-flat-button color="accent" class="card-button edit-button">Edit</button>
-      </a>
+      <button mat-flat-button color="accent" class="card-button edit-button" (click)='goToEdit(flight.key)'>Edit</button>
       <button mat-flat-button color="primary" (click)='delete(flight.key)' class="card-button">Delete</button>
     </mat-card>
   </div>
 </div>
 <ng-template #noData>No Data Available</ng-template>
-<!--(click)='edit(flight.key,flight)'
-[routerLink]="['/editflight', flight.key]"-->

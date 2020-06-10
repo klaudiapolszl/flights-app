@@ -25,3 +25,17 @@
   width: 40%;
   margin: 70px auto;
 }
+.return-button{
+  float: left;
+  width: 81px;
+}
+@media (max-width: 950px){
+  .create-flight-card{
+    width: 60%;
+  }
+}
+@media (max-width: 550px){
+  .create-flight-card{
+    width: 80%;
+  }
+}

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FlightsService } from '../../core/services/flights.service';
-import { Flight } from "../../models/flight.model";
+import { Flight, Flights } from "../../models/flight.model";
+import { Router } from '@angular/router';
+import { Observable } from "rxjs/Observable";
 
 @Component({
   selector: 'app-edit-flight',
@@ -9,7 +11,7 @@ import { Flight } from "../../models/flight.model";
   styleUrls: ['./edit-flight.component.scss']
 })
 export class EditFlightComponent{
-  registerForm: FormGroup;
+  editForm: FormGroup;
   private flight: Flight;
 
   crews = [
@@ -22,36 +24,45 @@ export class EditFlightComponent{
 
   constructor(
     private formBuilder: FormBuilder,
-    private flightsService: FlightsService
+    private flightsService: FlightsService,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
-      origin: [''],
-      destination: [''],
-      departureTime: [''],
-      returnTime: [''],
+    this.editForm = this.formBuilder.group({
+      origin: ['', { validators: [Validators.required] }],
+      destination: ['', { validators: [Validators.required] }],
+      departureTime: ['', { validators: [Validators.required] }],
+      returnTime: ['', { validators: [Validators.required] }],
       code: ['', { validators: [Validators.required] }],
-      additionalInformation: [''],
-      crew: ['']
+      additionalInformation: ['', { validators: [Validators.required] }],
+      crew: ['', { validators: [Validators.required] }]
     });
   }
 
   onSubmit() {
-    this.flight = this.registerForm.value;
-    (this.validationForm()) ? this.saveFlight() : '';
-  }
-
-  saveFlight(){
-    this.flightsService.addFlight(this.flight);
-    setTimeout(function(){
-      window.location.reload();
-    },
-    1000);
+    this.flight = this.editForm.value;
+    (this.validationForm()) ? this.edit() : '';
   }
 
   validationForm(){
-    return (this.registerForm.value.code) ? true : false;
+    var object = this.editForm.value;
+    for (var prop in object) {
+      if(!object[prop]){
+        return false;
+      }
+    }
+    return true;
   }
 
+  edit(){
+    let url = this.router.url;
+    let key = url.substring(13, url.length);
+    console.log(key);
+    this.flightsService.editFlight(key,this.flight);
+  }
+
+  goToMainPage(){
+    this.router.navigateByUrl('');
+  }
 }

@@ -9,7 +9,7 @@ import { Flight } from "../../models/flight.model";
   styleUrls: ['./flight-form.component.scss']
 })
 export class FlightFormComponent{
-  registerForm: FormGroup;
+  addForm: FormGroup;
   private flight: Flight;
 
   crews = [
@@ -26,33 +26,37 @@ export class FlightFormComponent{
   ) { }
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
-      origin: [''],
-      destination: [''],
-      departureTime: [''],
-      returnTime: [''],
+    this.addForm = this.formBuilder.group({
+      origin: ['', { validators: [Validators.required] }],
+      destination: ['', { validators: [Validators.required] }],
+      departureTime: ['', { validators: [Validators.required] }],
+      returnTime: ['', { validators: [Validators.required] }],
       code: ['', { validators: [Validators.required] }],
-      additionalInformation: [''],
-      crew: ['']
+      additionalInformation: ['', { validators: [Validators.required] }],
+      crew: ['', { validators: [Validators.required] }]
     });
   }
 
   onSubmit() {
-    this.flight = this.registerForm.value;
+    this.flight = this.addForm.value;
     (this.validationForm()) ? this.saveFlight() : '';
   }
 
   saveFlight(){
-    this.flightsService.addFlight(this.flight);
-    setTimeout(function(){
-      window.location.reload();
-    },
-    1000);
-  }
+      this.flightsService.addFlight(this.flight);
+      setTimeout(function(){
+        window.location.reload();
+      },
+      1000);
+    }
 
   validationForm(){
-    return (this.registerForm.value.code) ? true : false;
+    var object = this.addForm.value;
+    for (var prop in object) {
+      if(!object[prop]){
+        return false;
+      }
+  	}
+    return true;
   }
-
-
 }

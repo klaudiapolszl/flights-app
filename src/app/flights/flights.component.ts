@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FlightsService } from './../core/services/flights.service';
 import { Observable } from "rxjs/Observable";
 import { Flights } from "../models/flight.model";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-flights',
@@ -13,7 +14,8 @@ export class FlightsComponent {
   public flights$: Observable<Flights[]>;
 
   constructor(
-    private flightsService: FlightsService
+    private flightsService: FlightsService,
+    private router: Router
   ) {
     this.flights$ = this.flightsService.getFlights();
   }
@@ -27,10 +29,8 @@ export class FlightsComponent {
       1000);
     });
   }
-
-/*
-  edit(key: string, flight){
-    this.flights$ = this.flightsService.editFlight(key,flight);
+  goToEdit(key){
+    this.router.navigateByUrl('/edit-flight/'+key);
   }
-*/
+
 }
