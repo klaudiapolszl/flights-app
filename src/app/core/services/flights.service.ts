@@ -16,7 +16,7 @@ export class FlightsService {
   }
 
   getFlights(): Observable<Flights[]> {
-    let x = this.http
+    let getData = this.http
       .request(
       "GET",
       this.API_URL+'/flights.json',
@@ -34,7 +34,7 @@ export class FlightsService {
       })
       .do(console.log)
       .map(data => _.values(data));
-      return x;
+      return getData;
     }
 
   addFlight(flight) {
