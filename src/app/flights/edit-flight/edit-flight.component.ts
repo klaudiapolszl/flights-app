@@ -4,6 +4,7 @@ import { FlightsService } from '../../core/services/flights.service';
 import { Flight, Flights } from "../../models/flight.model";
 import { Router } from '@angular/router';
 import { Observable } from "rxjs/Observable";
+import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-flight',
@@ -25,7 +26,8 @@ export class EditFlightComponent{
   constructor(
     private formBuilder: FormBuilder,
     private flightsService: FlightsService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -64,5 +66,11 @@ export class EditFlightComponent{
 
   goToMainPage(){
     this.router.navigateByUrl('');
+  }
+
+  openSnackBar() {
+    this.snackBar.open('The edition was successful', 'X', {
+      duration: 2000
+    });
   }
 }

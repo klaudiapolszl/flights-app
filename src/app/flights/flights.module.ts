@@ -12,6 +12,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { EditFlightComponent } from './edit-flight/edit-flight.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [FlightsComponent, FlightCardComponent, NewFlightComponent, FlightFormComponent, DashboardComponent, EditFlightComponent],
@@ -23,7 +24,8 @@ import { EditFlightComponent } from './edit-flight/edit-flight.component';
     MatButtonModule,
     MatTabsModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule
   ],
   exports: [FlightsComponent]
 })
