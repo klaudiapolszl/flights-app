@@ -1,5 +1,5 @@
 <h1 class="main-title">Edit flight</h1>
-<mat-card class="create-flight-card">
+<mat-card *ngIf="flight$ | async as flight else noData" class="create-flight-card">
   <button mat-raised-button color="accent" class="return-button" (click)="goToMainPage()">Back</button>
   <div class="flight-form">
     <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
@@ -44,6 +44,8 @@
            <button mat-raised-button color="basic" type="reset">Clear the form</button>
         </div>
     </form>
-    <button mat-raised-button color="basic" (click)="openSnackBar()">snack</button>
   </div>
 </mat-card>
+<ng-template #noData>
+  <p class="error-info">No Data Available.</p>
+</ng-template>
