@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FlightsService } from '../../core/services/flights.service';
-import { Flight, Flights } from "../../models/flight.model";
+import { Flight } from "../../models/flight.model";
 import { Router } from '@angular/router';
 import { Observable } from "rxjs/Observable";
-import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-flight',
@@ -13,7 +12,9 @@ import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition}
 })
 export class EditFlightComponent{
   editForm: FormGroup;
-  private flight: Flight;
+  private flight$: Observable<Flight>;
+  private flightForm: Flight;
+  private key = this.router.url.substring(13, this.router.url.length);
 
   crews = [
     { label: 'Crew1', value: 'Kowalski, Szlachta, Polan'},
@@ -27,23 +28,23 @@ export class EditFlightComponent{
     private formBuilder: FormBuilder,
     private flightsService: FlightsService,
     private router: Router,
-    private snackBar: MatSnackBar
-  ) { }
-
-  ngOnInit() {
-    this.editForm = this.formBuilder.group({
-      origin: ['', { validators: [Validators.required] }],
-      destination: ['', { validators: [Validators.required] }],
-      departureTime: ['', { validators: [Validators.required] }],
-      returnTime: ['', { validators: [Validators.required] }],
-      code: ['', { validators: [Validators.required] }],
-      additionalInformation: ['', { validators: [Validators.required] }],
-      crew: ['', { validators: [Validators.required] }]
-    });
+  ) { 
+    this.flight$ = this.flightsService.getFlight(this.key);
+    this.flightsService.getFlight(this.key).subscribe(flight => {
+      this.editForm = this.formBuilder.group({
+        origin: [flight.origin, { validators: [Validators.required] }],
+        destination: [flight.destination, { validators: [Validators.required] }],
+        departureTime: [flight.departureTime, { validators: [Validators.required] }],
+        returnTime: [flight.returnTime, { validators: [Validators.required] }],
+        code: [flight.code, { validators: [Validators.required] }],
+        additionalInformation: [flight.additionalInformation, { validators: [Validators.required] }],
+        crew: [flight.crew, { validators: [Validators.required] }]
+      });
+    })
   }
-
+  
   onSubmit() {
-    this.flight = this.editForm.value;
+    this.flightForm = this.editForm.value;
     (this.validationForm()) ? this.edit() : '';
   }
 
@@ -57,20 +58,11 @@ export class EditFlightComponent{
     return true;
   }
 
-  edit(){
-    let url = this.router.url;
-    let key = url.substring(13, url.length);
-    console.log(key);
-    this.flightsService.editFlight(key,this.flight);
+  edit(){    
+    this.flightsService.editFlight(this.key, this.flightForm);
   }
 
   goToMainPage(){
     this.router.navigateByUrl('');
-  }
-
-  openSnackBar() {
-    this.snackBar.open('The edition was successful', 'X', {
-      duration: 2000
-    });
   }
 }
