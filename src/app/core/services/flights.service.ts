@@ -74,11 +74,11 @@ export class FlightsService {
       });
   }
 
-  editFlight(key: string, flight) {
+  editFlight(key: string,flight) {
     const headers = new HttpHeaders()
     .set("Content-Type", "application/json");
- 
-    return this.http.put(this.API_URL+"/flights/"+key+".json",
+
+    this.http.put(this.API_URL+"/flights/"+key+".json",
     {
       "origin": flight.origin,
       "destination": flight.destination,
