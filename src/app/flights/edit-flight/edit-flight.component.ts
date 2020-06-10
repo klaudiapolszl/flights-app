@@ -12,7 +12,7 @@ import { Observable } from "rxjs/Observable";
 })
 export class EditFlightComponent{
   editForm: FormGroup;
-  private flight$: Observable<Flight>;
+  public flight$: Observable<Flight>;
   private flightForm: Flight;
   private key = this.router.url.substring(13, this.router.url.length);
 
