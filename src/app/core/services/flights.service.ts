@@ -33,7 +33,6 @@ export class FlightsService {
         });
         return flightsWithKey;
       })
-      .do(console.log)
       .map(data => _.values(data));
     return getData;
   }
